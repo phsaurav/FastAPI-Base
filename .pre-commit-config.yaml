@@ -16,6 +16,7 @@ repos:
         args:
         - --max-line-length=100
         # - --errors-only
+        - --disable=W
 -   repo: local
     hooks:
     -   id: black

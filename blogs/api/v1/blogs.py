@@ -3,14 +3,18 @@ Blogs related API routes
 """
 from typing import List
 from fastapi import APIRouter, Depends, status
-from core import oauth2
-from blogs import schemas
 from sqlalchemy.orm import Session
-from accounts.schemas import User
+from core import oauth2
 from core import database
+
+from blogs import schemas
 from blogs.api.v1 import service
 
+from accounts.schemas import User
+
+
 router = APIRouter(prefix="/api/blog/v1", tags=["Blogs"])
+
 
 get_db = database.get_db
 
