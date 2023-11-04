@@ -85,41 +85,41 @@ repos:
 ## Directory Structure
 	.
 	├ app1                           # Application 1 (user)
-	│	 ├── __init__.py
-	│	 ├── api                       # Holds all apis
-	│	 │  └── v1                     # API Version 1
-	│	 │     ├── __init__.py
-	│	 │     ├── service.py          # Holds all business logic
-	│	 │     └── app1.py             # Holds the api routes
-	│	 ├── schemas.py                # pydantic models
-	│	 ├── models.py                 # db models
-	│	 ├── config.py                 # local configs
-	│	 ├── constants.py
-	│	 └── utils.py
+	│  ├── __init__.py
+	│  ├── api                       # Holds all apis
+	│  │  └── v1                     # API Version 1
+	│  │     ├── __init__.py
+	│  │     ├── service.py          # Holds all business logic
+	│  │     └── app1.py             # Holds the api routes
+	│  ├── schemas.py                # pydantic models
+	│  ├── models.py                 # db models
+	│  ├── config.py                 # local configs
+	│  ├── constants.py
+	│  └── utils.py
 	├ app2                            # Application 2 (blog)
-	│	 ├── __init__.py
-	│	 ├── api                       # Holds all apis
-	│	 │  └── v1                     # API Version 1
-	│	 │     ├── __init__.py
-	│	 │     ├── service.py          # Holds all business logic
-	│	 │     └── app2.py             # Holds the api routes
-	│	 ├── schemas.py                # pydantic models
-	│	 ├── models.py                 # db models
-	│	 ├── config.py                 # local configs
-	│	 ├── constants.py
-	│	 └── utils.py
+	│  ├── __init__.py
+	│  ├── api                       # Holds all apis
+	│  │  └── v1                     # API Version 1
+	│  │     ├── __init__.py
+	│  │     ├── service.py          # Holds all business logic
+	│  │     └── app2.py             # Holds the api routes
+	│  ├── schemas.py                # pydantic models
+	│  ├── models.py                 # db models
+	│  ├── config.py                 # local configs
+	│  ├── constants.py
+	│  └── utils.py
 	├ core                   # Holds all global files
-	│	 ├──  __init__.py
-	│	 ├── models.py          # Global db models
-	│	 ├── config.py          # Global configs
-	│	 ├── database.py        # db connection related stuff
-	│	 ├── pagination.py      # global module pagination
-	│	 ├── constants.py       # Global constants
-	│	 └── utils.py
+	│  ├──  __init__.py
+	│  ├── models.py          # Global db models
+	│  ├── config.py          # Global configs
+	│  ├── database.py        # db connection related stuff
+	│  ├── pagination.py      # global module pagination
+	│  ├── constants.py       # Global constants
+	│  └── utils.py
 	├ tests                   # Holds all the test files
-	│	 ├── app1
-	│	 ├── app2
-	│	 └── core
+	│  ├── app1
+	│  ├── app2
+	│  └── core
 	├── .env                  # Holds all environment variables
 	├── docker-compose.yaml
 	├── Dockerfile
