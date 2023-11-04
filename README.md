@@ -42,6 +42,7 @@ pip3 install fastapi uvicorn sqlalchemy python-multipart
 ## Code Formatting and Quality Tools
 ### Install Formatter
 ```bash
+pip3 install pylint
 pip3 install black
 black .
 ```
@@ -128,3 +129,29 @@ repos:
 	├── requirements.txt      # Holds all dependency requirements
 	├── .pre-commit-config.yaml  # Holds all dependency requirements
 	└── main.py               # Main project file
+
+## Debugging
+
+Inside of your `.vscode` directory create a `launch.json` file:
+
+`launch.json`
+
+```json
+{
+	"version": "0.2.0",
+	"configurations": [
+		{
+			"name": "Python: FastAPI",
+			"type": "python",
+			"request": "launch",
+			"module": "uvicorn",
+			"args": [
+				"main:app",
+				"--reload"
+			],
+			"jinja": true,
+			"justMyCode": true
+		}
+	]
+}
+```
