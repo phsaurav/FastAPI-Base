@@ -1,0 +1,10 @@
+bcrypt
+black
+fastapi
+passlib
+pre-commit
+pydantic-settingspylint
+python-jose
+python-multipart
+sqlalchemy
+uvicorn
