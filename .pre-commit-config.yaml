@@ -13,6 +13,9 @@ repos:
         entry: pylint
         language: system
         types: [python]
+        args:
+        - --max-line-length=100
+        - --errors-only
 -   repo: local
     hooks:
     -   id: black
