@@ -4,11 +4,20 @@ repos:
     hooks:
     -   id: check-yaml
     -   id: check-json
-    -   id: trailing-whitespace
     -   id: requirements-txt-fixer
     -   id: name-tests-test
--   repo: https://github.com/psf/black
-    rev: 22.10.0
+-   repo: local
+    hooks:
+    -   id: pylint
+        name: pylint
+        entry: pylint
+        language: system
+        types: [python]
+-   repo: local
     hooks:
     -   id: black
-        args: [--line-length=120]
+        name: black
+        entry: black
+        language: system
+        types: [python]
+
