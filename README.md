@@ -64,7 +64,6 @@ repos:
     hooks:
     -   id: check-yaml
     -   id: check-json
-    -   id: trailing-whitespace
     -   id: requirements-txt-fixer
     -   id: name-tests-test
 -   repo: local
@@ -74,6 +73,10 @@ repos:
         entry: pylint
         language: system
         types: [python]
+        args:
+        - --max-line-length=100
+        # - --errors-only
+        - --disable=W
 -   repo: local
     hooks:
     -   id: black
@@ -81,6 +84,7 @@ repos:
         entry: black
         language: system
         types: [python]
+
 ```
 
 ## Directory Structure
