@@ -15,7 +15,7 @@ repos:
         types: [python]
         args:
         - --max-line-length=100
-        - --errors-only
+        # - --errors-only
 -   repo: local
     hooks:
     -   id: black
