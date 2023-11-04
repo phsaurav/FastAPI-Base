@@ -88,9 +88,9 @@ repos:
 	│  ├── __init__.py
 	│  ├── api                       # Holds all apis
 	│  │  └── v1                     # API Version 1
-	│  │     ├── __init__.py
-	│  │     ├── service.py          # Holds all business logic
-	│  │     └── app1.py             # Holds the api routes
+	│  │    ├── __init__.py
+	│  │    ├── service.py          # Holds all business logic
+	│  │    └── app1.py             # Holds the api routes
 	│  ├── schemas.py                # pydantic models
 	│  ├── models.py                 # db models
 	│  ├── config.py                 # local configs
@@ -100,9 +100,9 @@ repos:
 	│  ├── __init__.py
 	│  ├── api                       # Holds all apis
 	│  │  └── v1                     # API Version 1
-	│  │     ├── __init__.py
-	│  │     ├── service.py          # Holds all business logic
-	│  │     └── app2.py             # Holds the api routes
+	│  │    ├── __init__.py
+	│  │    ├── service.py          # Holds all business logic
+	│  │    └── app2.py             # Holds the api routes
 	│  ├── schemas.py                # pydantic models
 	│  ├── models.py                 # db models
 	│  ├── config.py                 # local configs
