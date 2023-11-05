@@ -20,7 +20,9 @@ class Blog(BlogBase):
     """
 
     class Config:
-        orm_mode = True
+        """Pydantic Schema Configuration"""
+
+        from_attributes = True
 
 
 class ShowBlog(BaseModel):
@@ -33,4 +35,6 @@ class ShowBlog(BaseModel):
     creator: ShowUser
 
     class Config:
-        orm_mode = True
+        """Pydantic Schema Configuration"""
+
+        from_attributes = True

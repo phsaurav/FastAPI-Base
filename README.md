@@ -34,9 +34,14 @@ __pycache__
 venv
 ```
 
-### install essential dependencies
+### Install essential dependencies
 ```bash
 pip3 install fastapi uvicorn sqlalchemy python-multipart
+```
+
+### Run FastAPI App
+```bash
+uvicorn main:app --reload
 ```
 
 ## Code Formatting and Quality Tools
