@@ -3,7 +3,8 @@ black
 fastapi
 passlib
 pre-commit
-pydantic-settingspylint
+pydantic-settings
+pylint
 python-jose
 python-multipart
 sqlalchemy
