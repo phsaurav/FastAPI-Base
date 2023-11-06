@@ -7,7 +7,7 @@ WORKDIR /app
 COPY ./requirements.txt .
 RUN pip install --no-cache-dir --upgrade -r requirements.txt
 
-# copy the src to the folder
+# copy the all files to docker /app folder
 COPY . .
 
 # start the server
