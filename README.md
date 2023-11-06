@@ -7,6 +7,7 @@
 1. [Commit Rules](#commit-rules)
 1. [Directory Structure](#directory-structure)
 1. [Debugging](#debugging)
+1. [Docker](#docker)
 
 ## Project Setup
 
@@ -163,4 +164,57 @@ Inside of your `.vscode` directory create a `launch.json` file:
 		}
 	]
 }
+```
+
+## Docker
+### Docker Image
+`Dockerfile`
+
+```docker
+FROM python:3.11.6-slim
+
+# set the working directory
+WORKDIR /app
+
+# install dependencies
+COPY ./requirements.txt .
+RUN pip install --no-cache-dir --upgrade -r requirements.txt
+
+# copy the all files to docker /app folder
+COPY . .
+
+# start the server
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
+```
+Create Docker Image:
+```bash
+docker build -t fast-api-base .
+```
+
+### Start Docker Container
+
+```bash
+docker run --name fastapi-base-container -p 8000:8000 -d fastapi-base
+```
+
+### Docker Compose Dev Environment
+`docker-compose.yml`
+
+```yml
+services:
+  app:
+    build: .
+    container_name: fastapi-server
+    command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+    ports:
+      - 8000:8000
+      - 5678:5678
+    volumes:
+      - .:/app
+```
+
+Compose Command:
+```
+docker-compose up
+docker-compose down
 ```
