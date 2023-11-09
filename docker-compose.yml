@@ -13,7 +13,7 @@ services:
   nginx:
     build: ./nginx/.
     ports:
-      - "8080:8080"
+      - "80:80"
     volumes:
       - ./nginx/nginx.conf:/app/nginx/nginx.conf
     depends_on:
