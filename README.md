@@ -28,11 +28,24 @@ touch README.md
 
 `.gitignore`
 ```
-__pycache__
+#Fast API
+__pycache__/
 .DS_Store
+.Python
+build/
+
+*.manifest
+*.spec
 .vscode
-.gitignore
-venv
+
+#Environment
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
 ```
 
 ### Install essential dependencies
