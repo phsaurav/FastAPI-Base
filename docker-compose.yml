@@ -2,9 +2,9 @@ services:
   app:
     build: .
     container_name: fastapi-server
-    command: uvicorn main:app --host 127.0.0.1 --port 8000 --reload
+    command: uvicorn main:app --host api --port 80
     ports:
-      - 8000:8000
+      # - 8000:8000
       - 5678:5678
     volumes:
       - .:/app
