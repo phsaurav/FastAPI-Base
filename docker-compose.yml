@@ -8,8 +8,26 @@ services:
       - 5678:5678
     volumes:
       - .:/app
-  #   depends_on:
-  #     - redis
+    depends_on:
+      - cache
+  nginx:
+    build: ./nginx/.
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./nginx/nginx.conf:/app/nginx/nginx.conf
+    depends_on:
+      - app
+      - cache
 
-  # redis:
-  #   image: redis:alpine
+  cache:
+    build:
+      context: ./redis
+      dockerfile: Dockerfile
+    image: redis:7.2-alpine
+    privileged: true
+    command: sh -c "./init.sh"
+    ports:
+      - 6379:6379
+    volumes:
+      - ./redis/data:/data:rw
