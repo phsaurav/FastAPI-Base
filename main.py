@@ -32,7 +32,7 @@ def root():
     """
     Handle root route entry point to check server status
     """
-    return "FastAPI Base Server Running Docker"
+    return "FastAPI Base Server Running Docker Updated with CICD"
 
 
 accounts_models.Base.metadata.create_all(database.engine)
