@@ -1,8 +1,8 @@
 version: 0.0
 os: linux
 files:
-  - source: /index.html
-    destination: /home/ec2-user/FastAPI-Base/
+  - source: /
+    destination: /home/ec2-user/FastAPI-Base
 hooks:
   BeforeInstall:
     - location: scripts/before-install.sh
