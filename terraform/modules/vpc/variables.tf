@@ -40,55 +40,9 @@ variable "vpc_one_natgateway_per_az" {
   default     = false
 }
 
-# * API Gateway Variables
-variable "agw_sg_name" {
-  description = "Name of the API Gateway Security Group"
-  type        = string
-  default     = "agw_sg"
-}
-
-variable "agw_name" {
-  description = "Name of the API Gateway"
-  type        = string
-}
-
-variable "stage_name" {
-  description = "Stage Name of the API Gateway"
-  type        = string
-}
-
-variable "hosted_zone_name" {
-  description = "Name of the Hosted Zone of the domain"
-  type        = string
-}
-
-variable "domain_name" {
-  description = "Domain name for API Gateway"
-  type        = string
-}
-
-variable "domain_certificate_arn" {
-  description = "Domain Name Certification ARN"
-  type        = string
-}
-
-variable "agw_vpc_link_name" {
-  description = "Name of the API Gateway VPC Link"
-  type        = string
-  default     = "agw_vpc_link"
-}
-variable "alb_listeners_arn" {
-  description = "Name of the API Gateway VPC Link"
-  type        = string
-}
 
 variable "enable_nat_gateway" {
   description = "NAT Gateway or NAT Instance"
   type        = bool
 }
 
-variable "nat_instance_image_id" {
-  description = "NAT instance image id"
-  type        = string
-  default     = "ami-01ca4016fdc24128c"
-}

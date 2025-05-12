@@ -30,36 +30,8 @@ output "vpc_public_subnets" {
   value       = module.vpc.public_subnets
 }
 
-# * ASG Outputs
-output "asg_name" {
-  description = "The name of the Auto Scaling Group"
-  value       = module.asg.asg_autoscaling_group_name
+# ECR
+output "ecr_public_repository_uri" {
+  value = module.ecr.ecr_public_repository_uri
+  description = "URI of the public ECR repository"
 }
-
-output "asg_instance_security_group_id" {
-  description = "The ID of the security group for the ASG instances"
-  value       = module.asg.asg_autoscaling_group_id
-}
-
-# CodeDeploy Outputs
-output "codedeploy_app_name" {
-  description = "Name of the CodeDeploy application"
-  value       = module.codedeploy.codedeploy_app_name
-}
-
-output "codedeploy_deployment_group_name" {
-  description = "Name of the CodeDeploy deployment group"
-  value       = module.codedeploy.deployment_group_name
-}
-
-# CodePipeline Outputs
-output "codepipeline_name" {
-  description = "Name of the CodePipeline"
-  value       = module.codepipeline.pipeline_name
-}
-
-output "codepipeline_artifact_bucket" {
-  description = "Name of the artifact S3 bucket"
-  value       = module.codepipeline.artifact_bucket
-}
-

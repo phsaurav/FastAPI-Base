@@ -1,7 +1,7 @@
 
-# TerraSample
+# DhakaCelsius
 
-TerraSample is a generic portfolio project demonstrating a modular approach to infrastructure management using Terraform. This project serves as a template for showcasing best practices and standard module organization for a two tier cloud infrastructure.
+DhakaCelsius is a generic portfolio project demonstrating a modular approach to infrastructure management using Terraform. This project serves as a template for showcasing best practices and standard module organization for a two tier cloud infrastructure.
 
 ## Project Structure
 ```
@@ -58,9 +58,9 @@ terraform {
 `dev.tfvars`
 ```tfvars
 # Generic variables
-project     = "terrasample"
+project     = "dhaka-celsius"
 aws_region  = "<region>"
-profile     = "terrasample-dev"
+profile     = "dhaka-celsius-dev"
 environment = "dev"
 ```
 

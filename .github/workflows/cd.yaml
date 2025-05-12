@@ -1,0 +1,66 @@
+name: CD Pipeline
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+  
+  build-and-push:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        
+      - name: Extract app version from file
+        id: app-version
+        run: |
+          APP_VERSION=$(python -c "import sys; sys.path.insert(0, '.'); from app.version import __version__; print(__version__)")
+          echo "VERSION=${APP_VERSION}" >> $GITHUB_OUTPUT
+          
+      - name: Verify release tag matches app version
+        if: github.event_name == 'release'
+        run: |
+          RELEASE_TAG=${GITHUB_REF#refs/tags/v}
+          APP_VERSION=${{ steps.app-version.outputs.VERSION }}
+          echo "Release Tag: v${RELEASE_TAG}"
+          echo "App Version: ${APP_VERSION}"
+          if [ "${RELEASE_TAG}" != "${APP_VERSION}" ]; then
+            echo "ERROR: Release tag v${RELEASE_TAG} does not match app version ${APP_VERSION}"
+            exit 1
+          else
+            echo "✅ Version check passed: Release tag matches app version"
+          fi
+          
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+          
+      # Change this to login to the public ECR repository
+      - name: Login to Amazon ECR Public
+        id: login-ecr-public
+        uses: aws-actions/amazon-ecr-login@v1
+        with:
+          registry-type: public
+          
+      - name: Set image tag
+        id: set-tag
+        run: |
+          echo "IMAGE_TAG=${{ steps.app-version.outputs.VERSION }}" >> $GITHUB_OUTPUT
+          
+      # Update the registry to use the public ECR
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          push: true
+          tags: |
+            public.ecr.aws/${{ secrets.ECR_PUBLIC_ALIAS }}/dhaka-celsius:${{ steps.set-tag.outputs.IMAGE_TAG }}
+            public.ecr.aws/${{ secrets.ECR_PUBLIC_ALIAS }}/dhaka-celsius:latest
