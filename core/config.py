@@ -13,7 +13,6 @@ class Settings(BaseSettings):
     """
 
     prod: bool = False
-    version: str = "0.1.0"
     title: str = "DhakaCelsius"
     fastapi_log_level: str = "info"
     sentry_dsn: Optional[str] = None

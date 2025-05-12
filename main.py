@@ -7,10 +7,11 @@ from fastapi import FastAPI
 from starlette.middleware.cors import CORSMiddleware
 
 from app.weather.api import weather
+from app.version import __version__
 from core import config
 from core.logger import Logger
 
-app = FastAPI(title=config.cfg.title, version=config.cfg.version)
+app = FastAPI(title=config.cfg.title, version=__version__)
 Logger.setup(app=app, json_format=True)
 
 # CORS
