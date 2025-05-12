@@ -12,6 +12,7 @@ from app.weather.schemas import (
     WeatherResponseSchema,
     HealthResponseSchema,
 )
+from app.version import __version__
 from core.config import cfg
 from core.error import APIError, AppError
 from core.constants import Constants
@@ -158,7 +159,7 @@ class TestWeatherService:
         assert isinstance(result, WeatherResponseSchema)
         assert result.hostname == "test-server"
         assert result.datetime == "2307152230"
-        assert result.version == cfg.version
+        assert result.version == __version__
         assert "dhaka" in result.weather
         assert result.weather["dhaka"].temperature == "26"  # 25.5 rounded to 26
         assert result.weather["dhaka"].temp_unit == "c"
@@ -184,7 +185,7 @@ class TestWeatherService:
         assert result.status == "healthy"
         assert result.status_code == 200
         assert result.timestamp == "2307152230"
-        assert result.version == cfg.version
+        assert result.version == __version__
         assert result.external_services["weather_service"] == True
 
     def test_check_health_unhealthy(self, weather_service, monkeypatch):
@@ -206,7 +207,7 @@ class TestWeatherService:
         assert result.status == "unhealthy"
         assert result.status_code == 500
         assert result.timestamp == "2307152230"
-        assert result.version == cfg.version
+        assert result.version == __version__
         assert result.external_services["weather_service"] == False
 
     def test_check_health_exception(self, weather_service, monkeypatch):

@@ -6,6 +6,7 @@ import datetime
 import socket
 
 import requests
+from app.version import __version__
 
 from app.weather.schemas import (
     HealthResponseSchema,
@@ -111,7 +112,7 @@ class WeatherService:
         return WeatherResponseSchema(
             hostname=socket.gethostname(),
             datetime=formatted_datetime,
-            version=cfg.version,
+            version=__version__,
             weather={"dhaka": dhaka_weather},
         )
 
@@ -147,7 +148,7 @@ class WeatherService:
             status_code=response.status_code,
             timestamp=formatted_datetime,
             hostname=socket.gethostname(),
-            version=cfg.version,
+            version=__version__,
             external_services={"weather_service": weather_service_status},
             response_time=response_time,
         )
