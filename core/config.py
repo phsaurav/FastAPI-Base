@@ -1,7 +1,7 @@
 """
 Global Configuration
 """
-from datetime import timedelta
+
 from typing import Optional
 
 from pydantic_settings import BaseSettings
@@ -13,11 +13,9 @@ class Settings(BaseSettings):
     """
 
     prod: bool = False
+    version: str = "0.1.0"
+    title: str = "DhakaCelsius"
     fastapi_log_level: str = "info"
-    jwt_secret: str = "secret"
-    jwt_algorithm: str = "HS256"
-    jwt_expiration_seconds: float = timedelta(minutes=15).total_seconds()
-    jwt_refresh_expiration_seconds: float = timedelta(weeks=2).total_seconds()
     sentry_dsn: Optional[str] = None
 
 

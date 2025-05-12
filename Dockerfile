@@ -1,14 +1,34 @@
-FROM python:3.11.6-slim
+# A two stage docker container creation to get the full python support while building
+# Along with a light weight slim python image after building in production
 
-# set the working directory
-WORKDIR /app
+# --- Building Stage ---
+  FROM python:3.11.6-bookworm AS builder
 
-# install dependencies
-COPY ./requirements.txt .
-RUN pip install --no-cache-dir --upgrade -r requirements.txt
+  WORKDIR /app
+  
+  COPY ./requirements.txt .
+  RUN pip install --no-cache-dir --upgrade -r requirements.txt
+  
+  
+  # --- Final image ---
+  FROM python:3.11.6-slim-bookworm
 
-# copy the all files to docker /app folder
-COPY . .
+  ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    PYTHONPATH=/app
 
-# start the server
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
+  # Create non-root user
+  RUN useradd -m -r appuser
+  
+  WORKDIR /app
+  
+  # Copy Python dependencies
+  COPY --from=builder /usr/local/lib/python3.11/site-packages/ /usr/local/lib/python3.11/site-packages/
+  COPY --from=builder /usr/local/bin/ /usr/local/bin/
+  
+  # Copy application code
+  COPY --chown=appuser:appuser . .
+
+  # Switch to non-root user
+  USER appuser
+

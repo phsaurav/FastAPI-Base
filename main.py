@@ -1,20 +1,17 @@
 """
 Main entry point for this FastAPI Project
 """
+
 import uvicorn
 from fastapi import FastAPI
 from starlette.middleware.cors import CORSMiddleware
-from core import config, database
 
-# Accounts module imports
-from accounts import models as accounts_models
-from accounts.api.v1 import accounts
+from app.weather.api import weather
+from core import config
+from core.logger import Logger
 
-# Blogs module imports
-from blogs import models as blogs_models
-from blogs.api.v1 import blogs
-
-app = FastAPI()
+app = FastAPI(title=config.cfg.title, version=config.cfg.version)
+Logger.setup(app=app, json_format=True)
 
 # CORS
 if not config.cfg.prod:
@@ -30,16 +27,18 @@ if not config.cfg.prod:
 @app.get("/")
 def root():
     """
-    Handle root route entry point to check server status
+    Welcome endpoint with basic navigation information
     """
-    return "FastAPI Base Server Running Docker Updated with CICD"
+    return {
+        "message": "🌡️ Welcome to DhakaCelsius!",
+        "description": "Your pocket thermometer for Dhaka city",
+        "status": "Server is running smoothly",
+        "documentation": "Visit /docs to explore our API",
+        "tip": "Try our /hello endpoint to check Dhaka's current temperature 🔥",
+    }
 
 
-accounts_models.Base.metadata.create_all(database.engine)
-blogs_models.Base.metadata.create_all(database.engine)
-
-app.include_router(blogs.router)
-app.include_router(accounts.router)
+app.include_router(weather.router)
 
 if __name__ == "__main__":
     uvicorn.run(app, log_level=config.cfg.fastapi_log_level)
